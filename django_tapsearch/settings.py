@@ -9,12 +9,17 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
-#import django_heroku
+import dj_database_url
+import dotenv
+import django_heroku
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+#added these also
+dotenv_file = os.path.join(BASE_DIR, ".env")
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
 #added these three lines
 """SITE_ROOT = os.path.dirname(__file__)
 DEBUG = True
@@ -22,7 +27,7 @@ TEMPLATE_DEBUG = DEBUG"""
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-SECRET_KEY = "d95f7443dc070df81ea7b9a93d4c8ff149ac00a033121f30"
+SECRET_KEY = os.path.join('SECRET_KEY')
 # SECURITY WARNING: keep the secret key used in production secret!
 #SECRET_KEY = '@@09i4f&sjgajgau4!q2t_%b6cz4j^2+gn2te439&m9-16h^u&'
 
@@ -46,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -78,12 +84,14 @@ WSGI_APPLICATION = 'django_tapsearch.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-}
+}"""
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config()
 
 
 # Password validation
@@ -121,6 +129,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-STATIC_ROOT = os.path.join('BASE_DIR', 'staticfiles')
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+#STATIC_ROOT = os.path.join('BASE_DIR', 'staticfiles')
 STATIC_URL = '/static/'
-#django_heroku.settings(locals())
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+django_heroku.settings(locals())
+del DATABASES['default']['OPTIONS']['sslmode']
