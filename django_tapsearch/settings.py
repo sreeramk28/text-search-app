@@ -18,14 +18,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-
+SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@@09i4f&sjgajgau4!q2t_%b6cz4j^2+gn2te439&m9-16h^u&'
+#SECRET_KEY = '@@09i4f&sjgajgau4!q2t_%b6cz4j^2+gn2te439&m9-16h^u&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mytapsearchapp.herokuapp.com']
 
 
 # Application definition
