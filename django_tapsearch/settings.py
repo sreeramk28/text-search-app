@@ -15,6 +15,10 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+#added these three lines
+"""SITE_ROOT = os.path.dirname(__file__)
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG"""
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -25,7 +29,7 @@ SECRET_KEY = "d95f7443dc070df81ea7b9a93d4c8ff149ac00a033121f30"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mytapsearchapp.herokuapp.com']
+ALLOWED_HOSTS = ['mytapsearchapp.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -79,6 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+
 }
 
 
