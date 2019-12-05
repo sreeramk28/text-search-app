@@ -23,7 +23,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 #SECRET_KEY = '@@09i4f&sjgajgau4!q2t_%b6cz4j^2+gn2te439&m9-16h^u&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['mytapsearchapp.herokuapp.com']
 
