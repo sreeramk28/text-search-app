@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome-ElasticSearch</title>
+  </head>
+  <body>
+      <h1>Tap Search Home</h1>
+      <form method = "POST">
+        {% csrf_token %}
+        {{ form1 }}
+        <input type="submit" name="index" value="Index" />
+      </form>
+  </body>
+</html>
