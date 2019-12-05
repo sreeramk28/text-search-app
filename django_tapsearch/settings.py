@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'django_tapsearch.wsgi.application'
     }
 }"""
 DATABASES = {}
-DATABASES['default'] = dj_database_url.config()
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
 
 # Password validation
